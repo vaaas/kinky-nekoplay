@@ -67,8 +67,8 @@ class App extends Elem {
 
       window.addEventListener('keydown', this.on_key_down.bind(this))
 
-      // this.route('file_select')
-      this.route('watch')
+      this.route('file_select')
+      // this.route('watch')
    }
 
    set_file(x) {
@@ -80,10 +80,6 @@ class App extends Elem {
    }
 
    route(where, ...xs) {
-      this.elem.className =
-         where === 'watch'
-         ? 'movie-time'
-         : ''
       for (const [k, v] of Object.entries(this.routes)) {
          if (k === where) v.show(...xs)
          else v.hide()
@@ -310,20 +306,20 @@ class Chat extends Elem {
    }
 
    add_notice(x) {
-      this.log.appendChild(
-         h('div', { className: 'msg notice' }, [x]),
-      )
+      const elem = h('div', { className: 'msg notice' }, [x])
+      this.log.appendChild(elem)
+      this.elem.scrollIntoView()
       this.start_timeout()
       return this
    }
 
    add_chat(name, msg) {
-      this.log.appendChild(
-         h('div', { className: 'msg chat' }, [
-            h('span', { className: 'name' }, [name]),
-            h('span', {}, [msg])
-         ])
-      )
+      const elem = h('div', { className: 'msg chat' }, [
+         h('span', { className: 'name' }, [name]),
+         h('span', {}, [msg])
+      ])
+      this.log.appendChild(elem)
+      elem.scrollIntoView()
       this.start_timeout()
       return this
    }

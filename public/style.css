@@ -1,8 +1,8 @@
 :root {
    --t: 250ms;
-   --bg: #444;
+   --bg: #000;
    --fg: #eee;
-   --shade: #00000020;
+   --shade: #00000060;
    --shine: #ffffff20;
    --radius: 4px;
 }
@@ -12,6 +12,7 @@ html {
    height: 100vh;
    width: 100vw;
    color: var(--fg);
+   overflow: hidden;
 }
 
 body {
@@ -23,8 +24,6 @@ body {
    justify-content: center;
    transition: background-color var(--t) ease;;
 }
-
-body.movie-time { background: #000; }
 
 .hidden {
    display: none;
@@ -57,10 +56,10 @@ video {
 
 #chat {
    position: absolute;
-   right: 1rem;
-   top: 1rem;
-   width: 30rem;
-   height: 30rem;
+   right: 0.5rem;
+   top: 0.5rem;
+   width: 40rem;
+   height: 15rem;
    background: var(--shade);
    border: 1px solid var(--shine);
    border-radius: var(--radius);
@@ -70,11 +69,19 @@ video {
 }
 
 #chat .log {
+   overflow: auto;
    padding: 0.5rem;
    width: 100%;
    height: calc(100% - 1.5rem);
    border-top-left-radius: var(--radius);
    border-bottom-right-radius: var(--radius);
+}
+
+#chat .msg {
+   line-height: 1.5rem;
+   color: white;
+   text-shadow: 0 0 4px var(--bg);
+   max-width: 19rem;
 }
 
 .msg.notice { font-style: italic; }
@@ -85,7 +92,7 @@ video {
 }
 
 #chat input {
-   color: var(--fg);
+   color: white;
    background: var(--shine);
    height: 1.5rem;
    border-bottom-left-radius: var(--radius);
