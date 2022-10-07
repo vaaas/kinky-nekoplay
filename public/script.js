@@ -346,7 +346,7 @@ class Chat extends Elem {
    add_notice(x) {
       const elem = h('div', { className: 'msg notice' }, [x])
       this.log.appendChild(elem)
-      this.elem.scrollIntoView()
+      elem.scrollIntoView()
       this.show()
       this.start_timeout()
       return this
