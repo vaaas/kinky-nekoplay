@@ -2,8 +2,8 @@
    --t: 250ms;
    --bg: #000;
    --fg: #eee;
-   --shade: #00000060;
-   --shine: #ffffff20;
+   --shade: #00000040;
+   --shine: #ffffff40;
    --radius: 4px;
 }
 
@@ -93,12 +93,13 @@ video {
 
 #chat input {
    color: white;
-   background: var(--shine);
+   background: none;
+   border: none;
+   border-top: 1px solid var(--shine);
    height: 1.5rem;
    border-bottom-left-radius: var(--radius);
    border-bottom-right-radius: var(--radius);
    outline: none;
-   border: 1px solid var(--shine);
    font-size: 1rem;
    padding: 0.25rem 0.5rem;
 }

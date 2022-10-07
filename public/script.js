@@ -181,13 +181,17 @@ class CyclingSpan extends Elem {
 class Watch extends Elem {
    constructor() {
       const elem = h('section', { id: 'watch' }, [
-         h('video', { 'controls': true }),
+         h('video'),
          h('aside'),
       ])
       super(elem)
 
       this.video = new Player(elem.querySelector('video'))
+         .on('play', this.req_play.bind(this))
+         .on('pause', this.req_pause.bind(this))
       this.chat = new Chat(elem.querySelector('aside'))
+         .on('play', (x) => this.video.play(x))
+         .on('pause', () => this.video.pause())
    }
 
    show(blob) {
@@ -206,11 +210,20 @@ class Watch extends Elem {
       this.chat.unfocus()
       return this
    }
+
+   req_play(x) {
+      this.chat.send_play(x)
+   }
+
+   req_pause() {
+      this.chat.send_pause()
+   }
 }
 
 class Player extends Elem {
    constructor(elem) {
       super(elem)
+      elem.onclick = this.on_click.bind(this)
       this.blob = undefined
    }
 
@@ -218,6 +231,26 @@ class Player extends Elem {
       this.blob = x
       if (!this.blob) return this
       this.elem.src = URL.createObjectURL(this.blob)
+      return this
+   }
+
+   on_click(e) {
+      if (this.elem.paused)
+         this.emit('play', this.elem.currentTime)
+      else
+         this.emit('pause')
+   }
+
+   play(x) {
+      if (x !== undefined)
+         this.elem.currentTime = x
+      this.elem.play()
+      return this
+   }
+
+   pause() {
+      this.elem.pause()
+      return this
    }
 }
 
@@ -256,7 +289,7 @@ class Chat extends Elem {
       if (this.ws) return
       this.ws = new WebSocket(`ws://${location.hostname}:${location.port}/ws`)
       this.ws.onmessage = this.on_message.bind(this)
-      setTimeout(() => this.send_chat('YOO!!!'), 250)
+      this.send_name(prompt('Name?'))
    }
 
    on_message(x) {
@@ -277,7 +310,7 @@ class Chat extends Elem {
             break
 
          case 'play':
-            this.emit('play')
+            this.emit('play', data[1])
             break
 
          case 'pause':
@@ -300,8 +333,13 @@ class Chat extends Elem {
       return this
    }
 
-   send_play() {
-      this.ws.send(JSON.stringify(['play']))
+   send_play(x) {
+      this.ws.send(JSON.stringify(['play', x]))
+      return this
+   }
+
+   send_name(x) {
+      this.ws.send(JSON.stringify(['name', x]))
       return this
    }
 
@@ -309,6 +347,7 @@ class Chat extends Elem {
       const elem = h('div', { className: 'msg notice' }, [x])
       this.log.appendChild(elem)
       this.elem.scrollIntoView()
+      this.show()
       this.start_timeout()
       return this
    }
@@ -320,12 +359,14 @@ class Chat extends Elem {
       ])
       this.log.appendChild(elem)
       elem.scrollIntoView()
+      this.show()
       this.start_timeout()
       return this
    }
 
    hide() {
-      this.elem.classList.add('opaque')
+      if (document.activeElement !== this.input)
+         this.elem.classList.add('opaque')
       return this
    }
 
@@ -342,9 +383,6 @@ class Chat extends Elem {
 
    start_timeout() {
       this.clear_timeout()
-      console.log(document.activeElement === this.input, 'active element')
-      if (document.activeElement === this.input)
-         return
       this.timeout = setTimeout(this.hide.bind(this), 3e3)
    }
 
@@ -356,8 +394,8 @@ class Chat extends Elem {
    }
 
    unfocus() {
-      this.hide()
       this.input.blur()
+      this.hide()
       return this
    }
 
