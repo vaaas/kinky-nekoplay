@@ -234,8 +234,11 @@ class Chat extends Elem {
       }
       switch(data[0]) {
          case 'chat':
+            console.log(data)
+            break
+
          case 'notice':
-            console.log(data.slice(1))
+            this.add_notice(data[1])
             break
 
          case 'play':
@@ -249,18 +252,29 @@ class Chat extends Elem {
          default:
             console.error('Unknown message type:', data[0])
       }
+      return this
    }
 
    send_chat(x) {
       this.ws.send(JSON.stringify(['chat', x]))
+      return this
    }
 
    send_pause() {
       this.ws.send(JSON.stringify(['pause']))
+      return this
    }
 
    send_play() {
       this.ws.send(JSON.stringify(['play']))
+      return this
+   }
+
+   add_notice(x) {
+      this.log.appendChild(
+         h('p', { class: 'msg notice' }, x),
+      )
+      return this
    }
 }
 

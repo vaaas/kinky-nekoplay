@@ -1,10 +1,10 @@
 :root {
    --t: 250ms;
-   --bg: #446;
+   --bg: #444;
    --fg: #eee;
    --shade: #00000020;
    --shine: #ffffff20;
-   --radius: 2px;
+   --radius: 4px;
 }
 
 html {
@@ -70,8 +70,25 @@ video {
 #chat .log {
    width: 100%;
    height: calc(100% - 1.5rem);
+   border-top-left-radius: var(--radius);
+   border-bottom-right-radius: var(--radius);
+}
+
+.msg.notice { font-style: italic; }
+
+.msg.chat .name {
+   font-weight: bold;
+   margin-right: 1rem;
 }
 
 #chat input {
+   color: var(--fg);
+   background: var(--shine);
    height: 1.5rem;
+   border-bottom-left-radius: var(--radius);
+   border-bottom-right-radius: var(--radius);
+   outline: none;
+   border: 1px solid var(--shine);
+   font-size: 1rem;
+   padding: 0.25rem 0.5rem;
 }
