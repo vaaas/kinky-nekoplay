@@ -229,6 +229,8 @@ class Chat extends Elem {
    constructor(elem) {
       super(elem)
       this.log = h('div', { className: 'log' })
+      this.log.onmousedown = this.begin_drag.bind(this)
+      this.log.onmouseup = this.end_drag.bind(this)
       this.input = h('input')
       this.input.onchange = this.on_input_change.bind(this)
       elem.appendChild(this.log)
@@ -237,6 +239,21 @@ class Chat extends Elem {
       this.ws = undefined
 
       this.start_timeout()
+   }
+
+   begin_drag() {
+      this.clear_timeout()
+      this.log.onmousemove = this.drag.bind(this)
+   }
+
+   end_drag() {
+      this.log.onmousemove = null
+      this.start_timeout()
+   }
+
+   drag(e) {
+      this.elem.style.left = e.clientX - (this.elem.clientWidth/2) + 'px'
+      this.elem.style.top = e.clientY - (this.elem.clientHeight/2) + 'px'
    }
 
    connect() {
