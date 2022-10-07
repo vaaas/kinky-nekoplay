@@ -65,6 +65,8 @@ class App extends Elem {
             .mount(elem)
       }
 
+      window.addEventListener('keydown', this.on_key_down.bind(this))
+
       // this.route('file_select')
       this.route('watch')
    }
@@ -87,6 +89,13 @@ class App extends Elem {
          else v.hide()
       }
       return this
+   }
+
+   on_key_down(e) {
+      if (e.key === 'Enter')
+         this.routes.watch.focus_chat()
+      else if (e.key === 'Escape')
+         this.routes.watch.unfocus_chat()
    }
 }
 
@@ -144,7 +153,7 @@ class CyclingSpan extends Elem {
       elem.classList.add('cycling-span')
       elem.innerText = this.choices[this.at]
 
-      this.interval = undefined
+      this.timeout = undefined
    }
 
    stop() {
@@ -191,6 +200,16 @@ class Watch extends Elem {
       this.chat.connect()
       return this
    }
+
+   focus_chat() {
+      this.chat.focus()
+      return this
+   }
+
+   unfocus_chat() {
+      this.chat.unfocus()
+      return this
+   }
 }
 
 class Player extends Elem {
@@ -211,10 +230,13 @@ class Chat extends Elem {
       super(elem)
       this.log = h('div', { className: 'log' })
       this.input = h('input')
+      this.input.onchange = this.on_input_change.bind(this)
       elem.appendChild(this.log)
       elem.appendChild(this.input)
       elem.id = 'chat'
       this.ws = undefined
+
+      this.start_timeout()
    }
 
    connect() {
@@ -234,7 +256,7 @@ class Chat extends Elem {
       }
       switch(data[0]) {
          case 'chat':
-            console.log(data)
+            this.add_chat(data[1], data[2])
             break
 
          case 'notice':
@@ -272,9 +294,65 @@ class Chat extends Elem {
 
    add_notice(x) {
       this.log.appendChild(
-         h('p', { class: 'msg notice' }, x),
+         h('div', { className: 'msg notice' }, [x]),
       )
+      this.start_timeout()
       return this
+   }
+
+   add_chat(name, msg) {
+      this.log.appendChild(
+         h('div', { className: 'msg chat' }, [
+            h('span', { className: 'name' }, [name]),
+            h('span', {}, [msg])
+         ])
+      )
+      this.start_timeout()
+      return this
+   }
+
+   hide() {
+      this.elem.classList.add('opaque')
+      return this
+   }
+
+   show() {
+      this.elem.classList.remove('opaque')
+      return this
+   }
+
+   clear_timeout() {
+      if (this.timeout)
+         clearTimeout(this.timeout)
+      this.timeout = undefined
+   }
+
+   start_timeout() {
+      this.clear_timeout()
+      console.log(document.activeElement === this.input, 'active element')
+      if (document.activeElement === this.input)
+         return
+      this.timeout = setTimeout(this.hide.bind(this), 3e3)
+   }
+
+   focus() {
+      this.clear_timeout()
+      this.show()
+      this.input.focus()
+      return this
+   }
+
+   unfocus() {
+      this.hide()
+      this.input.blur()
+      return this
+   }
+
+   on_input_change() {
+      this.send_chat(this.input.value)
+      this.input.value = ''
+      this.input.blur()
+      this.start_timeout()
    }
 }
 
