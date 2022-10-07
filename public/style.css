@@ -1,0 +1,77 @@
+:root {
+   --t: 250ms;
+   --bg: #446;
+   --fg: #eee;
+   --shade: #00000020;
+   --shine: #ffffff20;
+   --radius: 2px;
+}
+
+html {
+   font-family: sans;
+   height: 100vh;
+   width: 100vw;
+   color: var(--fg);
+}
+
+body {
+   background: var(--bg);
+   height: inherit;
+   width: inherit;
+   margin: 0;
+   display: flex;
+   justify-content: center;
+   transition: background-color var(--t) ease;;
+}
+
+body.movie-time { background: #000; }
+
+.hidden {
+   display: none;
+}
+
+.opaque {
+   opacity: 0;
+}
+
+#fileselect {
+   width: 30rem;
+   margin: auto;
+}
+
+#watch {
+   width: inherit;
+   height: inherit;
+}
+
+.cycling-span {
+   transition: opacity var(--t) ease;
+}
+
+video {
+   display: block;
+   height: 100vh;
+   margin: auto;
+}
+
+#chat {
+   position: absolute;
+   right: 1rem;
+   top: 1rem;
+   width: 30rem;
+   height: 30rem;
+   background: var(--shade);
+   border: 1px solid var(--shine);
+   border-radius: var(--radius);
+   display: flex;
+   flex-direction: column;
+}
+
+#chat .log {
+   width: 100%;
+   height: calc(100% - 1.5rem);
+}
+
+#chat input {
+   height: 1.5rem;
+}
