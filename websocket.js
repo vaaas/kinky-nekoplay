@@ -5,11 +5,11 @@ const msg = (type, ...args) => JSON.stringify([type, ...args])
 export default function on_connection(req, socket) {
 	clients.add(socket)
 	socket.name = 'anonymous'
-	socket.on('message', (msg) => on_message(ws, msg))
+	socket.on('message', (msg) => on_message(socket, msg))
 	socket.on('close', () => clients.delete(socket))
 	socket.on('error', () => clients.delete(socket))
 	console.log(socket.name, 'connected')
-	broadcast(msg('notice', `${ws.name} has joined`))
+	broadcast(msg('notice', `${socket.name} has joined`))
 }
 
 const message_map = {
