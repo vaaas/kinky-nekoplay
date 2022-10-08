@@ -287,7 +287,7 @@ class Chat extends Elem {
 
    connect() {
       if (this.ws) return
-      this.ws = new WebSocket(`wss://${location.hostname}:${location.port}/ws`)
+      this.ws = new WebSocket(`wss://kinky-nekoplay.paedosexual.tk`)
       this.ws.onmessage = this.on_message.bind(this)
       this.send_name(prompt('Name?'))
    }
