@@ -1,3 +1,4 @@
+import './App.css'
 import { Accessor, createEffect, createSignal } from 'solid-js'
 import FileSelect from './views/FileSelect'
 import Watch from './views/Watch'

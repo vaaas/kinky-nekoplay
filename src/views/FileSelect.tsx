@@ -1,3 +1,4 @@
+import './FileSelect.css'
 import CyclingSpan from '../components/CyclingSpan'
 import type { Accessor, Setter } from 'solid-js'
 

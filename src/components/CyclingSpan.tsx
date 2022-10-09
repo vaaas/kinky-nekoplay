@@ -1,3 +1,4 @@
+import './CyclingSpan.css'
 import { createSignal, onCleanup, onMount } from 'solid-js'
 import { sleep } from '../util'
 

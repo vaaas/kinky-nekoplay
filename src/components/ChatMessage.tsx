@@ -1,3 +1,4 @@
+import './ChatMessage.css'
 import { Accessor } from "solid-js"
 import { Chat } from "../types";
 

@@ -2,3 +2,4 @@ node_modules
 conf.js
 package-lock.json
 public/script2.js
+public/script2.css

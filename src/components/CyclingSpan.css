@@ -1,0 +1,3 @@
+.cycling-span {
+   transition: opacity var(--t) ease;
+}

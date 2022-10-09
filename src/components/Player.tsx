@@ -1,3 +1,4 @@
+import './Player.css'
 import { Accessor, createEffect, Setter } from "solid-js"
 
 type Props = {

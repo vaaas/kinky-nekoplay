@@ -1,0 +1,26 @@
+#chat {
+   position: absolute;
+   right: 0.5rem;
+   top: 0.5rem;
+   width: 40rem;
+   height: 15rem;
+   background: var(--shade);
+   border: 1px solid var(--shine);
+   border-radius: var(--radius);
+   display: flex;
+   flex-direction: column;
+   transition: opacity var(--t) ease;
+}
+
+#chat input {
+   color: white;
+   background: none;
+   border: none;
+   border-top: 1px solid var(--shine);
+   height: 1.5rem;
+   border-bottom-left-radius: var(--radius);
+   border-bottom-right-radius: var(--radius);
+   outline: none;
+   font-size: 1rem;
+   padding: 0.25rem 0.5rem;
+}

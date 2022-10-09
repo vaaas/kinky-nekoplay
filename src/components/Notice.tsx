@@ -1,3 +1,4 @@
+import './Notice.css'
 import { Accessor } from "solid-js"
 import { Notice as NoticeT } from "../types";
 

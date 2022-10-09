@@ -1,3 +1,4 @@
+import './Log.css'
 import { Accessor, createEffect, For } from "solid-js"
 import { Chat as ChatT, Notice as NoticeT } from "../types"
 import { ChatMessage } from "./ChatMessage"

@@ -1,3 +1,4 @@
+import './Watch.css'
 import { Accessor, createSignal } from 'solid-js'
 import Player from '../components/Player'
 import Connection from '../Connection'

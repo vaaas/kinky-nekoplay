@@ -1,3 +1,4 @@
+import './Chat.css'
 import { Accessor } from 'solid-js'
 import type Connection from '../Connection'
 import type { Chat as ChatT, Notice } from '../types'
