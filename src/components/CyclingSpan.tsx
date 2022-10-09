@@ -1,5 +1,5 @@
-import { createSignal, onCleanup, onMount } from 'solid-js';
-import { sleep } from './util';
+import { createSignal, onCleanup, onMount } from 'solid-js'
+import { sleep } from '../util'
 
 const choices = [
    'my dude',
@@ -10,7 +10,7 @@ const choices = [
    'bro',
    'comrade',
    'slut',
-];
+]
 
 export default function CyclingSpan() {
    const [at, setAt] = createSignal(0)

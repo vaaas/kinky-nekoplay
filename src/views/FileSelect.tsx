@@ -1,4 +1,4 @@
-import CyclingSpan from './CyclingSpan'
+import CyclingSpan from '../components/CyclingSpan'
 import type { Accessor, Setter } from 'solid-js'
 
 type Props = {

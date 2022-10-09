@@ -1,6 +1,6 @@
 import { Accessor, createEffect, createSignal } from 'solid-js'
-import FileSelect from './FileSelect'
-import Watch from './Watch'
+import FileSelect from './views/FileSelect'
+import Watch from './views/Watch'
 
 export default function App() {
    const [route, setRoute] = createSignal('file-select')

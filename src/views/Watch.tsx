@@ -1,7 +1,7 @@
 import { Accessor, createSignal } from 'solid-js'
-import Player from './Player'
-import Connection from './Connection'
-import Chat from './Chat';
+import Player from '../components/Player'
+import Connection from '../Connection'
+import Chat from '../components/Chat';
 
 type Props = {
    file: Accessor<File>;

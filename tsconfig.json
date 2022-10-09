@@ -7,8 +7,5 @@
       "jsxImportSource": "solid-js",
       "target": "ESNext",
       "moduleResolution": "Node"
-   },
-   "include": [
-      "src/"
-   ]
+   }
 }
