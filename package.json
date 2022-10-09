@@ -1,5 +1,14 @@
 {
    "name": "kinky-nekoplay",
-   "version": "0.0.0",
-   "type": "module"
+   "version": "0.1.0",
+   "type": "module",
+   "scripts": {
+      "build": "NODE_ENV='production' node build.js",
+      "watch": "NODE_ENV='development' node build.js"
+   },
+   "devDependencies": {
+      "esbuild": "^0.15.10",
+      "esbuild-plugin-solid": "^0.4.2",
+      "solid-js": "^1.5.7"
+   }
 }
