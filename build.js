@@ -12,4 +12,4 @@ build({
    logLevel: 'info',
    plugins: [solidPlugin()],
    watch: !prod,
- }).catch(() => process.exit(1));
+}).catch(() => process.exit(1));
