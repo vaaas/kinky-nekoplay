@@ -81,7 +81,7 @@ video {
    line-height: 1.5rem;
    color: white;
    text-shadow: 0 0 4px var(--bg);
-   max-width: 19rem;
+   max-width: calc(100% - 1rem);
 }
 
 .msg.notice { font-style: italic; }
