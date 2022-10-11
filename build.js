@@ -8,11 +8,9 @@ const prod = process.env.NODE_ENV === 'production'
 const appname = 'kinky-nekoplay'
 
 function build_inline() {
-	const html = readFileSync('public/kinky-nekoplay.html').toString('utf-8')
+	const html = readFileSync('public/index.html').toString('utf-8')
 	const js = readFileSync(`public/${appname}.js`).toString('utf-8')
 	const css = readFileSync(`public/${appname}.css`).toString('utf-8')
-
-	console.log(js)
 
 	const build = html
 		.replace(
@@ -24,7 +22,7 @@ function build_inline() {
 			`<script>${js}</script>`
 		)
 
-	writeFileSync(`public/${kinky-nekoplay}.html`, build)
+	writeFileSync(`public/${appname}.html`, build)
 }
 
 build({
@@ -37,7 +35,6 @@ build({
 	watch: !prod,
 })
 .then(() => {
-	console.log('yoooooooooo')
 	if (!prod) return
 	build_inline()
 })
