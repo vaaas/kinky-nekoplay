@@ -1,7 +1,7 @@
 .log {
    overflow: auto;
    padding: 0.5rem;
-   width: 100%;
+   width: calc(100% - 1rem);
    height: calc(100% - 1.5rem);
    border-top-left-radius: var(--radius);
    border-bottom-right-radius: var(--radius);

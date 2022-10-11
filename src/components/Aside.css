@@ -1,0 +1,14 @@
+body > aside {
+	position: absolute;
+	left: -30rem;
+	top: 0;
+	background: #012;
+	height: inherit;
+	width: 30rem;
+	transition: left var(--t) ease;
+	overflow-y: auto;
+}
+
+body > aside.show {
+	left: 0;
+}

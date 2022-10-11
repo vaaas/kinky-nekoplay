@@ -2,3 +2,15 @@
    width: 30rem;
    margin: auto;
 }
+
+#fileselect p {
+	margin-top: 5rem;
+}
+
+#fileselect p a {
+	color: var(--fg2);
+	cursor: help;
+	user-select: none;
+}
+
+#fileselect p a:hover { color: var(--fg); }

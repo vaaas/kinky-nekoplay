@@ -1,0 +1,31 @@
+.modal {
+	font-size: 20px;
+	padding: 2rem;
+}
+
+.modal header {
+	font-variant: small-caps;
+	font-size: 2rem;
+}
+
+.modal footer button {
+	background: inherit;
+	outline: none;
+	border: 1px solid var(--shine);
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	text-transform: uppercase;
+	color: var(--fg);
+	cursor: pointer;
+	font-weight: 400;
+	transition: background-color var(--t) ease;
+}
+
+.modal .body {
+	line-height: 1.5em;
+	color: var(--shine-lots);
+}
+
+.modal footer button:hover {
+	background: var(--shine);
+}

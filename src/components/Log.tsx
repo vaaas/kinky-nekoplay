@@ -3,6 +3,7 @@ import { Accessor, createEffect, For } from "solid-js"
 import { Chat as ChatT, Notice as NoticeT } from "../types"
 import { ChatMessage } from "./ChatMessage"
 import { Notice } from "./Notice"
+import { next_frame } from '../util'
 
 type Props = {
 	log: Accessor<Array<ChatT|NoticeT>>;
@@ -11,9 +12,10 @@ type Props = {
 export default function Log({ log }: Props) {
 	let ref: HTMLDivElement
 
-	createEffect(() => {
-		if (log().length === 0) return
-		else ref.lastElementChild?.scrollIntoView()
+	createEffect(async () => {
+		log()
+		await next_frame()
+		requestAnimationFrame(() => ref.scrollTop = ref.scrollHeight)
 	})
 
 	return <div ref={ref!} class='log'>

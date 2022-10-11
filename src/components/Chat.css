@@ -1,7 +1,7 @@
 #chat {
    position: absolute;
-   right: 0.5rem;
-   top: 0.5rem;
+   right: 1rem;
+   top: 1rem;
    width: 40rem;
    height: 15rem;
    background: var(--shade);
