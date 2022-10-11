@@ -16,11 +16,13 @@ export function Aside(props: Props) {
 			setHidden(false)
 			await next_frame()
 			await next_frame()
-			setShow(true)
+			if (hidden() === false)
+				setShow(true)
 		} else {
 			setShow(false)
 			await sleep(250)
-			setHidden(true)
+			if (show() ===  false)
+				setHidden(true)
 		}
 	})
 
