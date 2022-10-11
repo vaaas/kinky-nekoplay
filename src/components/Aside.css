@@ -2,9 +2,10 @@ body > aside {
 	position: absolute;
 	left: -30rem;
 	top: 0;
-	background: #012;
+	background: linear-gradient(#246, #024);
 	height: inherit;
 	width: 30rem;
+	max-width: 100vw;
 	transition: left var(--t) ease;
 	overflow-y: auto;
 }

@@ -1,5 +1,5 @@
 import './Watch.css'
-import { Accessor, createEffect, createSignal } from 'solid-js'
+import { Accessor, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
 import Player from '../components/Player'
 import Connection from '../Connection'
 import Chat from '../components/Chat'
@@ -8,7 +8,7 @@ import { append } from '../util'
 
 type Props = {
 	file: Accessor<File>;
-	onSettings: (x: MouseEvent) => void;
+	onSettings: (x: MouseEvent|undefined) => void;
 	name: Accessor<string>;
 }
 
@@ -46,11 +46,29 @@ export default function Watch({ file, onSettings, name }: Props) {
 	}
 
 	if (name() === 'anonymous')
-		onSettings(undefined as any as MouseEvent)
+		onSettings(undefined)
 
 	createEffect(() => {
 		if (name() !== 'anonymous')
 			connection.name(name())
+	})
+
+	const onKeyDown = (e: KeyboardEvent) => {
+		if (['INPUT', 'BUTTON'].includes(document!.activeElement!.tagName))
+			return
+		else if (e.key === 'Tab') {
+			onSettings(undefined)
+			e.preventDefault()
+			e.stopPropagation()
+		}
+	}
+
+	onMount(() => {
+		window.addEventListener('keydown', onKeyDown)
+	})
+
+	onCleanup(() => {
+		window.removeEventListener('keydown', onKeyDown)
 	})
 
 	return <section id='watch'>

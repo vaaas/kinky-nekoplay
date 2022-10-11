@@ -11,6 +11,11 @@ const choices = shuffle([
 	'bro',
 	'comrade',
 	'slut',
+	'gurl',
+	'ya cunt',
+	'faggot',
+	'motherfucker',
+	'bitch',
 ])
 
 export default function CyclingSpan() {
@@ -18,7 +23,6 @@ export default function CyclingSpan() {
 	const [opaque, setOpaque] = createSignal(false)
 
 	const choice = () => choices[at()]
-	const cls = () => [ 'cycling-span', (opaque() ? 'opaque' : '') ].join(' ')
 
 	let interval: undefined|number = undefined
 
@@ -39,5 +43,10 @@ export default function CyclingSpan() {
 		interval = undefined
 	})
 
-	return <span class={cls()}>{choice()}</span>
+	return <span classList={{
+		'cycling-span': true,
+		'opaque': opaque(),
+	}}>
+		{choice()}
+	</span>
 }

@@ -7,6 +7,11 @@ html {
 	color: var(--fg);
 }
 
+* {
+	accent-color: var(--ac);
+	outline-color: var(--ac);
+}
+
 body {
 	background: var(--bg);
 	height: inherit;
@@ -42,23 +47,27 @@ code { color: #b99; }
 label { margin-right: 0.5rem; }
 
 input {
-	font-size: 1rem;
-	background: inherit;
+	font-size: inherit;
+	background: none;
 	outline: none;
-	border: 1px solid var(--shine-lots);
+	border: none;
+	border-bottom: 1px solid var(--shine-lots);
 	color: var(--shine-lots);
-	padding: 0.5em 1em;
-	transition: background-color var(--t) ease;
+	padding: 0.5em;
+	transition: color var(--t) ease;
 }
 
-input:focus { background: var(--shine); }
+input:focus {
+	color: white;
+	caret-color: var(--ac);
+}
 
 button {
 	background: inherit;
 	outline: none;
 	border: 1px solid var(--shine);
 	padding: 0.5rem 1rem;
-	font-size: 1rem;
+	font-size: inherit;
 	text-transform: uppercase;
 	color: var(--fg);
 	cursor: pointer;

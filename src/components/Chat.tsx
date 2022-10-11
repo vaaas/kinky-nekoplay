@@ -15,7 +15,6 @@ export default function Chat({ connection, log }: Props) {
 		connection.chat(target.value)
 		target.value = ''
 		target.blur()
-		// start_timeout
 	}
 
 	return (
