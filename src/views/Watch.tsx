@@ -45,6 +45,9 @@ export default function Watch({ file, onSettings, name }: Props) {
 			connection.pause()
 	}
 
+	if (name() === 'anonymous')
+		onSettings(undefined as any as MouseEvent)
+
 	createEffect(() => {
 		if (name() !== 'anonymous')
 			connection.name(name())
