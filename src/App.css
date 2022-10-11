@@ -1,17 +1,17 @@
 @import 'variables';
 
 html {
-   font-family: sans;
-   height: 100vh;
-   width: 100vw;
-   color: var(--fg);
+	font-family: sans;
+	height: 100vh;
+	width: 100vw;
+	color: var(--fg);
 }
 
 body {
-   background: var(--bg);
-   height: inherit;
-   width: inherit;
-   margin: 0;
+	background: var(--bg);
+	height: inherit;
+	width: inherit;
+	margin: 0;
 	overflow: hidden;
 }
 
@@ -20,19 +20,19 @@ main {
 	position: relative;
 	width: inherit;
 	height: inherit;
-   display: flex;
-   justify-content: center;
-   transition: left var(--t);
+	display: flex;
+	justify-content: center;
+	transition: left var(--t);
 }
 
 aside.show + main { left: 30rem; }
 
 .hidden {
-   display: none;
+	display: none;
 }
 
 .opaque {
-   opacity: 0;
+	opacity: 0;
 }
 
 a { transition: color var(--t) ease; }

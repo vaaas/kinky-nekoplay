@@ -7,55 +7,55 @@ import type { Chat as ChatT, Notice } from '../types'
 import { append } from '../util'
 
 type Props = {
-   file: Accessor<File>;
+	file: Accessor<File>;
 	onSettings: (x: MouseEvent) => void;
 	name: Accessor<string>;
 }
 
 export default function Watch({ file, onSettings, name }: Props) {
-   const connection = new Connection({
-      onChat: (name, message) => {
+	const connection = new Connection({
+		onChat: (name, message) => {
 			setLog(append({ type: 'chat', name, message }, log()))
 		},
 
-      onNotice: (message) => {
+		onNotice: (message) => {
 			setLog(append({ type: 'notice', message }, log()))
 		},
 
-      onPause: () => setPaused(true),
+		onPause: () => setPaused(true),
 
-      onPlay: (now) => {
+		onPlay: (now) => {
 			setTime(now)
-         setPaused(false)
-      },
-   })
+			setPaused(false)
+		},
+	})
 
 	const [time, setTime] = createSignal(0)
 
-   const [paused, setPaused] = createSignal(true)
+	const [paused, setPaused] = createSignal(true)
 
 	const [log, setLog] = createSignal<Array<ChatT|Notice>>([], {
 		equals: false,
 	})
 
-   function videoClicked(e: MouseEvent) {
-      if (paused())
-         connection.play((e.target as HTMLVideoElement).currentTime)
-      else
-         connection.pause()
-   }
+	function videoClicked(e: MouseEvent) {
+		if (paused())
+			connection.play((e.target as HTMLVideoElement).currentTime)
+		else
+			connection.pause()
+	}
 
 	createEffect(() => {
 		if (name() !== 'anonymous')
 			connection.name(name())
 	})
 
-   return <section id='watch'>
+	return <section id='watch'>
 		<div onClick={onSettings} class='settings-icon'>⚙️</div>
-      <Player file={file}
+		<Player file={file}
 			paused={paused}
 			onClick={videoClicked}
 			time={time} />
-      <Chat connection={connection} log={log}/>
-   </section>
+		<Chat connection={connection} log={log}/>
+	</section>
 }

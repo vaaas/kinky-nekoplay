@@ -1,17 +1,17 @@
 .log {
-   overflow: auto;
-   padding: 0.5rem;
-   width: calc(100% - 1rem);
-   height: calc(100% - 1.5rem);
-   border-top-left-radius: var(--radius);
-   border-bottom-right-radius: var(--radius);
+	overflow: auto;
+	padding: 0.5rem;
+	width: calc(100% - 1rem);
+	height: calc(100% - 1.5rem);
+	border-top-left-radius: var(--radius);
+	border-bottom-right-radius: var(--radius);
 }
 
 .log .msg {
-   line-height: 1.5rem;
-   color: white;
-   text-shadow: 0 0 4px var(--bg);
-   max-width: calc(100% - 1rem);
+	line-height: 1.5rem;
+	color: white;
+	text-shadow: 0 0 4px var(--bg);
+	max-width: calc(100% - 1rem);
 }
 
 .log .msg + .msg { margin-top: 0.5rem; }
