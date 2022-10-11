@@ -1,8 +1,8 @@
 import './CyclingSpan.css'
 import { createSignal, onCleanup, onMount } from 'solid-js'
-import { sleep } from '../util'
+import { shuffle, sleep } from '../util'
 
-const choices = [
+const choices = shuffle([
    'my dude',
    'homie',
    'buddy',
@@ -11,7 +11,7 @@ const choices = [
    'bro',
    'comrade',
    'slut',
-]
+])
 
 export default function CyclingSpan() {
    const [at, setAt] = createSignal(0)

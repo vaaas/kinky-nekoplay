@@ -1,5 +1,5 @@
 import './Watch.css'
-import { Accessor, createSignal } from 'solid-js'
+import { Accessor, createEffect, createSignal } from 'solid-js'
 import Player from '../components/Player'
 import Connection from '../Connection'
 import Chat from '../components/Chat'
@@ -8,9 +8,11 @@ import { append } from '../util'
 
 type Props = {
    file: Accessor<File>;
+	onSettings: (x: MouseEvent) => void;
+	name: Accessor<string>;
 }
 
-export default function Watch({ file }: Props) {
+export default function Watch({ file, onSettings, name }: Props) {
    const connection = new Connection({
       onChat: (name, message) => {
 			setLog(append({ type: 'chat', name, message }, log()))
@@ -43,7 +45,13 @@ export default function Watch({ file }: Props) {
          connection.pause()
    }
 
+	createEffect(() => {
+		if (name() !== 'anonymous')
+			connection.name(name())
+	})
+
    return <section id='watch'>
+		<div onClick={onSettings} class='settings-icon'>⚙️</div>
       <Player file={file}
 			paused={paused}
 			onClick={videoClicked}

@@ -7,6 +7,7 @@ type Props = {
 export default function Help({onClose}: Props) {
 	return <Modal
 		title='Instructions'
+		close='My understanding grows'
 		onClose={onClose}
 	>
 		<p>Select a local video file.</p>
