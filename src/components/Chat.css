@@ -1,26 +1,25 @@
 #chat {
+	font-weight: bold;
 	position: absolute;
-	right: 1rem;
-	top: 1rem;
 	width: 40rem;
 	height: 15rem;
-	background: var(--shade);
-	border: 1px solid var(--shine);
 	border-radius: var(--radius);
 	display: flex;
 	flex-direction: column;
 	transition: opacity var(--t) ease;
+	text-shadow:
+		1px 1px 1px var(--bg),
+		2px 2px 4px var(--bg);
 }
 
 #chat input {
-	color: white;
+	color: #fff;
+	caret-color: #fff;
+	font-weight: bold;
 	background: none;
-	border: none;
-	border-top: 1px solid var(--shine);
 	height: 1.5rem;
-	border-bottom-left-radius: var(--radius);
-	border-bottom-right-radius: var(--radius);
 	outline: none;
 	font-size: 1rem;
 	padding: 0.25rem 0.5rem;
+	text-shadow: inherit;
 }

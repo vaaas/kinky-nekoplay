@@ -10,7 +10,6 @@
 .log .msg {
 	line-height: 1.5rem;
 	color: white;
-	text-shadow: 0 0 4px var(--bg);
 	max-width: calc(100% - 1rem);
 }
 
