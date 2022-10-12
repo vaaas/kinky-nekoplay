@@ -62,16 +62,10 @@ export default function Watch({ file, onSettings, name }: Props) {
 			e.stopPropagation()
 		}
 	}
-
-	onMount(() => {
-		window.addEventListener('keydown', onKeyDown)
-	})
-
-	onCleanup(() => {
-		window.removeEventListener('keydown', onKeyDown)
-	})
-
-	return <section id='watch'>
+	return <section
+		onKeyDown={onKeyDown}
+		id='watch'
+	>
 		<div onClick={onSettings} class='settings-icon'>⚙️</div>
 		<Player file={file}
 			paused={paused}

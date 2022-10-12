@@ -1,11 +1,11 @@
 import './Modal.css'
-import { Accessor, JSXElement, children as children_helper } from 'solid-js'
+import { Accessor, JSXElement, children as children_helper, onMount, onCleanup } from 'solid-js'
 
 type Props = {
 	title: string | Accessor<string>;
 	children: JSXElement | JSXElement[];
 	close?: undefined | string | Accessor<string>;
-	onClose: (x: MouseEvent) => void;
+	onClose: (x: MouseEvent | undefined) => void;
 }
 
 export default function Modal({ title, children, close, onClose }: Props) {
@@ -21,6 +21,19 @@ export default function Modal({ title, children, close, onClose }: Props) {
 			: typeof close === 'string'
 			? close
 			: close()
+
+	const onKeyDown = (e: KeyboardEvent) => {
+		if (e.key === 'Escape')
+			onClose(undefined)
+	}
+
+	onMount(() => {
+		window.addEventListener('keydown', onKeyDown)
+	})
+
+	onCleanup(() => {
+		window.removeEventListener('keydown', onKeyDown)
+	})
 
 	return <div class='modal'>
 		<header>{compute_title()}</header>
