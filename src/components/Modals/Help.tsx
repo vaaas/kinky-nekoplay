@@ -1,7 +1,7 @@
 import Modal from "../Modal"
 
 type Props = {
-	onClose: (x: MouseEvent) => void;
+	onClose: (x: MouseEvent|undefined) => void;
 }
 
 export default function Help({onClose}: Props) {
