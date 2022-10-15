@@ -3,19 +3,22 @@ import { createSignal, onCleanup, onMount } from 'solid-js'
 import { shuffle, sleep } from '../util'
 
 const choices = shuffle([
-	'my dude',
-	'homie',
+	'bitch',
+	'boomer',
+	'bro',
 	'buddy',
+	'comrade',
+	'faggot',
+	'fella',
+	'gurl',
+	'homie',
+	'motherfucker',
+	'my dude',
 	'nigga',
 	'pal',
-	'bro',
-	'comrade',
 	'slut',
-	'gurl',
 	'ya cunt',
-	'faggot',
-	'motherfucker',
-	'bitch',
+	'zoomer',
 ])
 
 export default function CyclingSpan() {

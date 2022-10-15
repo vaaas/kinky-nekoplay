@@ -15,3 +15,25 @@ export function shuffle<T>(xs: Array<T>): Array<T> {
 	}
 	return xs
 }
+
+export function createTimer(f: () => void, t: number) {
+	let id: undefined | ReturnType<typeof setTimeout> = undefined
+
+	const g = () => {
+		id = undefined
+		f()
+	}
+
+	const start = () => {
+		stop()
+		id = setTimeout(g, t)
+	}
+
+	const stop = () => {
+		console.log(id, '!!!')
+		if (id) clearTimeout(id)
+		id = undefined
+	}
+
+	return [start, stop] as const
+}

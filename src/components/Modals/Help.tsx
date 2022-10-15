@@ -22,6 +22,10 @@ export default function Help({onClose}: Props) {
 
 		<p>Press <code>Enter</code> to send your message.</p>
 
+		<p>Press <code>Esc</code> to unfocus the chat field.</p>
+
+		<p>Press <code>F2</code> to open the settings.</p>
+
 		<p>Don't have too much fun. <code>:)</code></p>
 	</Modal>
 }

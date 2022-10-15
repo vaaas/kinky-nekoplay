@@ -54,18 +54,22 @@ export default function Watch({ file, onSettings, name }: Props) {
 	})
 
 	const onKeyDown = (e: KeyboardEvent) => {
-		if (['INPUT', 'BUTTON'].includes(document!.activeElement!.tagName))
-			return
-		else if (e.key === 'Tab') {
+		if (e.key === 'F2') {
 			onSettings(undefined)
 			e.preventDefault()
 			e.stopPropagation()
 		}
 	}
-	return <section
-		onKeyDown={onKeyDown}
-		id='watch'
-	>
+
+	onMount(() => {
+		document.addEventListener('keydown', onKeyDown)
+	})
+
+	onCleanup(() => {
+		document.removeEventListener('keydown', onKeyDown)
+	})
+
+	return <section id='watch'>
 		<div onClick={onSettings} class='settings-icon'>⚙️</div>
 		<Player file={file}
 			paused={paused}
